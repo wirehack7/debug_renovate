@@ -7,20 +7,20 @@
     "baseBranches": ["staging"],
     "kubernetes": {
         "commitMessageTopic": "Kubernetes: {{depName}}",
-        "fileMatch": ["(^|/)values.yaml$"]
+        "fileMatch": ["(^|/)values.yml$"]
     },
     "helm-values": {
         "commitMessageTopic": "helm staging: {{depName}}",
-        "fileMatch": ["(^|/)values.yaml$"],
+        "fileMatch": ["(^|/)values.yml$"],
         "pinDigests": false
     },
     "argocd":{
-        "fileMatch": ["(^|/)values.yaml$"]
+        "fileMatch": ["(^|/)values.yml$"]
     },
     "customManagers": [
         {
             "customType": "regex",
-            "fileMatch": ["(^|/)values.yaml$"],
+            "fileMatch": ["(^|/)values.yml$"],
             "matchStrings": [
               "\\s*repo_url: [\"']?(?<registryUrl>.*?)[\"']?\\s+(^.*$\n)*\\s*chart: [\"']?(?<depName>.*?)[\"']?\\s+(^.*$\n)*\\s*version: [\"']?(?<currentValue>.*?)[\"']?\\s+"
             ],
@@ -28,7 +28,7 @@
         },
         {
             "customType": "regex",
-            "fileMatch": ["(^|/)values.yaml$"],
+            "fileMatch": ["(^|/)values.yml$"],
             "matchStrings": [ 
                 "\\s\\s(?<depName>[a-zA-Z]{3,}):\\n\\s*repo_url:\\s[\\S]+\\n[\\s]{4}github_source:\\s\"https:\\\/\\\/(?<packageName>[\\S]+)\"\\n[\\s]{4}[\\S]+\\s[\\S]+\\n[\\s]{4}version:\\s*[\"']?(?<currentValue>[^\"]+)[\"']?"
             ],
