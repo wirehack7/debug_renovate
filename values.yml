@@ -5,6 +5,98 @@ project:
     server: "https://kubernetes.default.svc"
 argocd:
   namespace: "argocd"
+sources:
+  appofapps:
+    repo_url: "git@github.com:*****/app-of-apps.git"
+    branch: "staging"
+  awssecretsmanager:
+    repo_url: "https://aws.github.io/secrets-store-csi-driver-provider-aws"
+    chart: "secrets-store-csi-driver-provider-aws"
+    version: "0.3.4"
+    namespace: "kube-system"
+  blackbox:
+    repo_url: "https://prometheus-community.github.io/helm-charts"
+    chart: "prometheus-blackbox-exporter"
+    version: "8.3.0"
+    values: "$values/prometheus/blackbox/values-staging.yaml"
+  catalyst:
+    repo_url: "git@github.com:*****/catalyst.git"
+    branch: "staging"
+    path: "catalyst"
+    values: "$values/catalyst/values-staging.yaml"
+    namespace: "catalyst"
+  grafana:
+    repo_url: "git@github.com:*****/monitoring.git"
+    branch: "staging"
+    path: "grafana"
+    values: "$values/grafana/values-staging.yaml"
+    namespace: "monitoring"
+  grafanacrd:
+    oci_repo_url: "ghcr.io/grafana-operator/helm-charts"
+    chart: "grafana-operator"
+    version: "v5.4.1"
+    namespace: "monitoring"
+  grafanaoncallconfig:
+    repo_url: "git@github.com:*****/on-call.git"
+    branch: "staging"
+    path: "grafana-oncall-config"
+    values: "$values/grafana-oncall-config/values-staging.yaml"
+    namespace: oncall
+  mariadbserver:
+    repo_url: "git@github.com:*****/app-of-apps.git"
+    namespace: "mariadb"
+    branch: "staging"
+    path: "mariadb-server"
+    values: "$values/mariadb-server/values-staging.yaml"
+  ntfy:
+    repo_url: "git@github.com:*****/on-call.git"
+    branch: "staging"
+    path: "ntfy"
+    values: "$values/ntfy/values-staging.yaml"
+    namespace: oncall
+  oncall:
+    repo_url: "git@github.com:*****/on-call.git"
+    branch: "staging"
+    path: "prerequisites"
+    values: "$values/prerequisites/values-staging.yaml"
+    namespace: oncall
+  prometheuscrd:
+    repo_url: "https://prometheus-community.github.io/helm-charts"
+    chart: "kube-prometheus-stack"
+    version: "51.2.0"
+    namespace: "monitoring"
+  prometheus:
+    repo_url: "git@github.com:*****/monitoring.git"
+    branch: "staging"
+    path: "prometheus"
+    conf_path: "prometheus/conf"
+    values: "$values/prometheus/values-staging.yaml"
+  reporting:
+    repo_url: "git@github.com:*****/service-reporting.git"
+    branch: "staging"
+    path: "helm"
+    values: "$values/helm/values-staging.yaml"
+    namespace: "reporting"
+  werkbank:
+    repo_url: "git@github.com:*****/Werkbank.git"
+    branch: "staging"
+    path: "helm"
+    values: "$values/helm/values-staging.yaml"
+    namespace: "werkbank"
+##sources from public github repos
+  arangodbcrd:
+    repo_url: "https://github.com/arangodb/kube-arangodb"
+    github_source: "https://raw.githubusercontent.com/arangodb/kube-arangodb/master/chart/kube-arangodb/Chart.yaml"
+    path: "chart/kube-arangodb"
+    version: 1.2.32
+    values: "$values/arangodb-crd/values.yaml"
+    namespace: "catalyst"
+  grafanaoncall:
+    repo_url: "https://github.com/grafana/oncall/"
+    github_source: 
+    path: "helm/oncall"
+    version: "v1.3.58"
+    values: "$values/grafana-oncall/values-staging.yaml"
   mariadbcrd:
     repo_url: "https://github.com/mariadb-operator/mariadb-operator"
     github_source: "https://raw.githubusercontent.com/grafana/oncall/dev/helm/oncall/Chart.yaml"
@@ -19,3 +111,10 @@ argocd:
     version: "3.11.0"
     values: "$values/metrics-server/values.yaml"
     namespace: "monitoring"
+  secretsstorecsidriver:
+    repo_url: "https://github.com/kubernetes-sigs/secrets-store-csi-driver/"
+    github_source: "https://raw.githubusercontent.com/kubernetes-sigs/secrets-store-csi-driver/main/charts/secrets-store-csi-driver/Chart.yaml"
+    path: "charts/secrets-store-csi-driver"
+    version: "v1.3.4"
+    namespace: "kube-system"
+    values: "$values/secrets-store-csi-driver/values.yaml"
