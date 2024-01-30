@@ -11,7 +11,7 @@
     },
     "helm-values": {
         "commitMessageTopic": "helm staging: {{depName}}",
-        "fileMatch": ["(^|/)values.yml$"],
+        "fileMatch": ["(^|/)values.yaml$"],
         "pinDigests": false
     },
     "argocd":{
@@ -30,7 +30,7 @@
             "customType": "regex",
             "fileMatch": ["(^|/)values.yml$"],
             "matchStrings": [ 
-                "\\s\\s(?<depName>[a-zA-Z]{3,}):\\n\\s*repo_url:\\s[\\S]+\\n[\\s]{4}github_source:\\s\"https:\\\/\\\/(?<packageName>[\\S]+)\"\\n[\\s]{4}[\\S]+\\s[\\S]+\\n[\\s]{4}version:\\s*[\"']?(?<currentValue>[^\"]+)[\"']?"
+                "\\s\\s(?<depName>[a-zA-Z]{3,}):\\n\\s*repo_url:\\s[\\S]+\\n[\\s]{4}github_source:\\s\"https:\\\/\\\/(?<packageName>[\\S]+)\"\\n[\\s]{4}[\\S]+\\s[\\S]+\\n[\\s]{4}version:\\s*[\"']?(?<currentValue>[\\S]+)[\"']?"
             ],
             "datasourceTemplate": "custom.githubfiles"
         }
