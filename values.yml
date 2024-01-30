@@ -1,0 +1,21 @@
+project:
+  name: "root-application"
+  stage: "staging"
+  destination:
+    server: "https://kubernetes.default.svc"
+argocd:
+  namespace: "argocd"
+  mariadbcrd:
+    repo_url: "https://github.com/mariadb-operator/mariadb-operator"
+    github_source: "https://raw.githubusercontent.com/grafana/oncall/dev/helm/oncall/Chart.yaml"
+    path: "deploy/charts/mariadb-operator"
+    version: "v0.0.22"
+    values: "$values/mariadb-crd/values.yaml"
+    namespace: "mariadb"
+  metricsserver:
+    repo_url: "https://kubernetes-sigs.github.io/metrics-server/"
+    github_source: "https://raw.githubusercontent.com/kubernetes-sigs/metrics-server/master/charts/metrics-server/Chart.yaml"
+    chart: "metrics-server"
+    version: "3.11.0"
+    values: "$values/metrics-server/values.yaml"
+    namespace: "monitoring"
