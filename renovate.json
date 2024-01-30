@@ -30,7 +30,7 @@
             "customType": "regex",
             "fileMatch": ["(^|/)values.yml$"],
             "matchStrings": [ 
-                "\\s\\s(?<depName>[a-zA-Z]{3,}):\\n\\s*repo_url:\\s[\\S]+\\n[\\s]{4}github_source:\\s\"https:\\\/\\\/(?<packageName>[\\S]+)\"\\n[\\s]{4}[\\S]+\\s[\\S]+\\n[\\s]{4}version:\\s*[\"']?(?<currentValue>[\\S]+)[\"']?"
+                "\\s\\s(?<depName>[a-zA-Z]{3,}):\\n\\s*repo_url:\\s[\\S]+\\n[\\s]{4}github_source:\\s\"https:\\\/\\\/(?<packageName>[\\S]+)\"\\n[\\s]{4}[\\S]+\\s[\\S]+\\n[\\s]{4}version:\\s*(?:\"(?<currentValue>[^\"]+)\")"
             ],
             "datasourceTemplate": "custom.githubfiles"
         }
